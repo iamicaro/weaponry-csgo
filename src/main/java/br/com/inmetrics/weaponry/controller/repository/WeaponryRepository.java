@@ -37,7 +37,7 @@ public class WeaponryRepository {
 
 			for (S3ObjectSummary item : summaries) {
 				if (!item.getKey().endsWith("/"))
-					keys.add(item.getKey());
+					keys.add("https://s3-sa-east-1.amazonaws.com/" + bucketName + "/" +item.getKey());
 			}
 			objects = s3client.listNextBatchOfObjects(objects);
 		}
