@@ -1,6 +1,7 @@
 package br.com.inmetrics.weaponry.controller.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class WeaponryRepository {
 	@Value("${aws.s3.bucketname}")
 	private String bucketName;
 	
-	public List<String> findAllWeaponry() {
+	public List<HashMap<String, String>> findAllWeaponry() {
 
 		ListObjectsRequest listObjectsRequest = new ListObjectsRequest().withBucketName(bucketName);
 		List<String> keys = new ArrayList<>();
@@ -37,12 +38,37 @@ public class WeaponryRepository {
 
 			for (S3ObjectSummary item : summaries) {
 				if (!item.getKey().endsWith("/"))
-					keys.add("https://s3-sa-east-1.amazonaws.com/" + bucketName + "/" +item.getKey());
+					keys.add(item.getKey());
 			}
 			objects = s3client.listNextBatchOfObjects(objects);
 		}
-		return keys;
+		return preparedToJson(keys);
 
+	}
+	
+	private List<HashMap<String, String>> preparedToJson(List<String> keys) {
+		List<HashMap<String, String>> json = new ArrayList<HashMap<String, String>>();
+		
+		for(String key : keys) {
+			HashMap<String, String> auxiliar = new HashMap<>();
+			auxiliar.put("name", getNameWeapon(key));
+			auxiliar.put("weapon", key);
+			json.add(auxiliar);
+		}
+		
+		return json;
+		
+	}
+	
+	private String getNameWeapon(String weapon) {
+		if(weapon.contains("m4a4")) {
+			return "M4A4";
+		} else if(weapon.contains("ak47")) {
+			return "AK47";
+		}
+		
+		return "Unregistered weapon.";
+		
 	}
 	
 }

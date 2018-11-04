@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+		var HttpClient = function() {
+		this.get = function(aUrl, aCallback) {
+			var anHttpRequest = new XMLHttpRequest();
+			anHttpRequest.onreadystatechange = function() {
+				if (anHttpRequest.readyState == 4
+						&& anHttpRequest.status == 200)
+					aCallback(anHttpRequest.responseText);
+			}
+			anHttpRequest.open("GET", aUrl, true);
+			anHttpRequest.send(null);
+		}
+	}
+	var theurl = "http://localhost:8080/weaponry-csgo/weaponry";
+	var client = new HttpClient();
+	client.get(theurl, function(response) {
+		var response1 = JSON.parse(response);
+		myFunction(response1);
+	});
+
+	function myFunction(arr) {
+		var images = "";
+		var names = "";
+		var i;
+		for (i = 0; i < arr.length; i++) {
+			images += 'Name: '
+					+ arr[i].name
+					+ '<br><img src="https://s3-sa-east-1.amazonaws.com/weaponry-csgo/' + arr[i].weapon + '" height="220" width="400" ><br><br>';
+		}
+		document.getElementById("name").innerHTML = images;
+	}
+</script>
+</head>
+<body>
+	<p id="name"></p>
+	<br>
+</body>
+</html>
