@@ -1,41 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script type="text/javascript">
-		var HttpClient = function() {
-		this.get = function(aUrl, aCallback) {
-			var anHttpRequest = new XMLHttpRequest();
-			anHttpRequest.onreadystatechange = function() {
-				if (anHttpRequest.readyState == 4
-						&& anHttpRequest.status == 200)
-					aCallback(anHttpRequest.responseText);
-			}
-			anHttpRequest.open("GET", aUrl, true);
-			anHttpRequest.send(null);
-		}
-	}
-	var theurl = "http://localhost:8080/weaponry-csgo/weaponry";
-	var client = new HttpClient();
-	client.get(theurl, function(response) {
-		var response1 = JSON.parse(response);
-		myFunction(response1);
-	});
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Weaponry - CSGO</title>
 
-	function myFunction(arr) {
-		var images = "";
-		var names = "";
-		var i;
-		for (i = 0; i < arr.length; i++) {
-			images += 'Name: '
-					+ arr[i].name
-					+ '<br><img src="https://s3-sa-east-1.amazonaws.com/weaponry-csgo/' + arr[i].weapon + '" height="220" width="400" ><br><br>';
-		}
-		document.getElementById("name").innerHTML = images;
-	}
-</script>
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/estilo.css">
+    
 </head>
 <body>
-	<p id="name"></p>
-	<br>
+
+    <div class="inmetrics-headerbar">
+        <a  href="http://inmetrics.com.br" class="inmetrics-logo">
+            Weaponry • CSGO
+        </a>
+    </div>
+
+    <div class="wrap">
+        <!--Cabeçalho da página-->
+        <div class="page-header">
+            <h1>Weaponry • CSGO</h1>
+            <p>
+               Conheça os principais armamentos do Counter Strike - Global Offensive.
+            </p>
+        </div>
+
+        <!-- Principal Section, with the gallery code. If you want use only gallery code,
+             you can copy all code bellow, with gallery-container.-->
+        <section class="container gallery-container">
+
+            <!--Slide-->
+            <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img class="imgslide" src="../assets/images/nuke.jpg"/>
+            <div class="text">Conheça a coleção de armamentos Nuke 2018!</div>
+            </div>
+            
+            <div id="slide"></div>
+            
+            <!--Final Slides-->
+
+            <!--Navigation-->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </section>
+        <!--End of galery-->
+
+        <!-- end of page -->
+        <footer class="page-footer">
+            <p>by: <a href="https://github.com/iamicaro">Ícaro Silva</a> | <a href="https://github.com/iamicaro/weaponry-csgo">Fork on GitHub</a> </p>
+        </footer>
+    </div>
+
+    <!-- JS Comportament -->
+    <script src="../assets/js/comportamento.js"></script>
+    <script src="../assets/js/api.js"></script>
 </body>
 </html>

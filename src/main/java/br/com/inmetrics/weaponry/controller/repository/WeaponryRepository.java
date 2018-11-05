@@ -61,12 +61,41 @@ public class WeaponryRepository {
 	}
 	
 	private String getNameWeapon(String weapon) {
-		if(weapon.contains("m4a4")) {
-			return "M4A4";
-		} else if(weapon.contains("ak47")) {
-			return "AK47";
+		if(weapon.contains("aug")) {
+			return "AUG | Random Acess";
+		} else if(weapon.contains("awp")) {
+			return "AWP | Acheron";
+		} else if(weapon.contains("fiveseven")) {
+			return "Five-SeveN | Coolant";
+		} else if(weapon.contains("galilar")) {
+			return "Galil AR | Cold Fusion";
+		} else if(weapon.contains("glock")) {
+			return "Glock-18 | Nuclear Garden";
+		} else if(weapon.contains("m4a1")) {
+			return "M4A1-S | Control Panel";
+		} else if(weapon.contains("m4a4")) {
+			return "M4A4 | Mainframe";
+		} else if(weapon.contains("mag7")) {
+			return "MAG-7 | Core Breach";
+		} else if(weapon.contains("mp5")) {
+			return "MP5 | Co-Processor";
+		} else if(weapon.contains("mp7")) {
+			return "MP7 | Motherboard";
+		} else if(weapon.contains("negev")) {
+			return "Negev | Bulkhead";
+		} else if(weapon.contains("nova")) {
+			return "Nova | Mandrel";
+		} else if(weapon.contains("p250")) {
+			return "P250 | Facility Draft";
+		} else if(weapon.contains("p90")) {
+			return "P90 | Facility Negative";
+		} else if(weapon.contains("ppbizon")) {
+			return "PP-Bizon | Facility Sketch";
+		} else if(weapon.contains("tec9")) {
+			return "TEC-9 | Remote Control";
+		} else if(weapon.contains("ump45")) {
+			return "UMP-45 | Facility Dark";
 		}
-		
 		return "Unregistered weapon.";
 		
 	}
